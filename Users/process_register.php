@@ -1,11 +1,11 @@
 <?php
 session_start();
 
-// Database connection
+
 $host = "localhost";
 $dbname = "resortreservation";
-$username = "root";   // change if needed
-$password = "";       // change if you set a password
+$username = "root";  
+$password = "";     
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
@@ -14,14 +14,14 @@ try {
     die("DB Connection failed: " . $e->getMessage());
 }
 
-// Handle form submission
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $customer_name = trim($_POST['customer_name']);
     $customer_email = trim($_POST['customer_email']);
     $plain_password = $_POST['password'];
 
     if ($customer_name && $customer_email && $plain_password) {
-        // Check if email already exists
+    
         $stmt = $pdo->prepare("SELECT * FROM user WHERE customer_email = ?");
         $stmt->execute([$customer_email]);
         if ($stmt->fetch()) {

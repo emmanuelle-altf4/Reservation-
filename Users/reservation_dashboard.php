@@ -102,7 +102,7 @@ $reservations = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <div class="booking-panel">
         <h3>Book Your Stay</h3>
-        <form action="process_reservation2.php" method="POST">
+        <form action="process_reservation.php" method="POST">
             <label>Villa Type:</label>
             <select name="room_type" required>
                 <option value="Deluxe Two-Bedroom Villa">Deluxe Two-Bedroom Villa</option>

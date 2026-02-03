@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['admin_id'])) {
-    header("Location: admin_login.php");
+    header("Location: admin_dashboard.php");
     exit;
 }
 
@@ -18,14 +18,25 @@ try {
 }
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $full_name = $_POST['employee_number'];
-    $username  = $_POST['employee_name'];
-    $password  = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    // ✅ Match the form field name
+    $employee_name = $_POST['employee_name'] ?? null;
+    $password      = $_POST['password'] ?? null;
+    $role          = $_POST['role'] ?? 'Staff';
 
-    $stmt = $pdo->prepare("INSERT INTO staff (employee_number, employee_name, password, ) VALUES (?, ?, ?, ?)");
-    $stmt->execute([$full_name, $username, $email, $password]);
+    if ($employee_name && $password) {
+        $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
-    header("Location: admin_dashboard.php");
-    exit;
+        // ✅ Only insert into the columns that exist
+        $stmt = $pdo->prepare("
+            INSERT INTO staff (employee_name, password_hash, role)
+            VALUES (?, ?, ?)
+        ");
+        $stmt->execute([$employee_name, $password_hash, $role]);
+
+        header("Location: admin_dashboard.php");
+        exit;
+    } else {
+        echo "Please fill in all fields.";
+    }
 }
 ?>

@@ -57,6 +57,9 @@ VALUES (
 
 UPDATE staff SET role='Admin' WHERE employee_number=1;
 
+ALTER TABLE customerreservation 
+ADD otp_code VARCHAR(10),
+ADD otp_expiry DATETIME;
 
 
 adding admin

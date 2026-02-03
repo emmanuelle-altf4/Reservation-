@@ -12,7 +12,7 @@
     <body>
 
     <ul>
-        <li><a href="staff/login.php">Rereserve Now!</a></li>
+        <li><a href="Users/login.php">Rereserve Now!</a></li>
         <li><a href="#home"class="active">Home</a></li>
         
 </ul>   
