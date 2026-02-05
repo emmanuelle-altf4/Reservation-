@@ -74,22 +74,27 @@ $staff = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </tbody>
     </table>
 
-    <h2>Add New Staff</h2>
+    <!-- try lang if gumana G -->
+<h2>Add New Staff</h2>
 <form action="create_staff.php" method="POST">
     <label>Full Name:</label>
-    <input type="text" name="employee_name" required>
+    <input type="text" name="employee_name" required placeholder="Enter full name">
 
     <label>Password:</label>
-    <input type="password" name="password" required>
+    <input type="password" name="password" required placeholder="Enter password">
+
+    <label>Confirm Password:</label>
+    <input type="password" name="confirm_password" required placeholder="Confirm password">
 
     <label>Role:</label>
-    <select name="role">
-        <option value="Staff">Staff</option>
-        <option value="Manager">Manager</option>
-        <option value="Admin">Admin</option>
-    </select>
+    <select name="role" required>
+    <option value="">Select Role</option>
+    <option value="Admin">Admin</option>
+    <option value="Employee">Employee</option>
+</select>
 
     <button type="submit" class="loginbtn">Add Staff</button>
+</form>
 </form>
 
 

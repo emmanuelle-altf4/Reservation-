@@ -35,6 +35,7 @@ $reservations = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <ul>
         <li><a href="reservation_dashboard.php">Make Reservation</a></li>
         <li><a href="my_reservations.php">My Reservations</a></li>
+         <li><a href="make_payment.php">Paynow</a></li>
         <li><a href="profile.php">Profile</a></li>
         <li><a href="logout.php">Logout</a></li>
     </ul>
@@ -63,6 +64,7 @@ $reservations = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <td data-label="Room Type"><?php echo $res['room_type']; ?></td>
             <td data-label="Guests"><?php echo $res['guests']; ?></td>
             <td data-label="Status"><?php echo $res['status']; ?></td>
+           
         </tr>
         <?php endforeach; ?>
     </tbody>

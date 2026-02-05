@@ -1,11 +1,11 @@
 <?php
 session_start();
-
+//pang debug
 require __DIR__ . 'vendor/autoload.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-// Ensure user is logged in
+
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit;
@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $expiry = date("Y-m-d H:i:s", strtotime("+10 minutes"));
 
     try {
-        // Insert reservation
+    
         $stmt = $pdo->prepare("
             INSERT INTO customerreservation 
             (user_id, customer_name, checkin_date, checkout_date, room_type, guests, status, otp_code, otp_expiry) 
@@ -62,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         die("Database error: " . $e->getMessage());
     }
 
-    // Get customer email and name
+
     $customer_email = $_SESSION['customer_email'] ?? null;
     $customer_name  = $_SESSION['customer_name'] ?? 'Guest';
 
@@ -71,10 +71,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         exit;
     }
 
-    // PHPMailer
+
     $mail = new PHPMailer(true);
     try {
-        // 1. Server Settings
+ 
         $mail->isSMTP();
         $mail->Host       = 'smtp.gmail.com';
         $mail->SMTPAuth   = true;
@@ -83,11 +83,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port       = 587;
 
-        // 2. Recipients
+
         $mail->setFrom('kookyarabia06@gmail.com', 'Resort Reservations');
         $mail->addAddress($customer_email, $customer_name);
 
-        // 3. Content
+
         $mail->isHTML(true);
         $mail->Subject = 'Reservation Receipt & OTP Confirmation';
         $mail->Body    = "
@@ -99,6 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <li>Check-out: " . htmlspecialchars($checkout_date) . "</li>
                 <li>Room Type: " . htmlspecialchars($room_type) . "</li>
                 <li>Guests: " . htmlspecialchars($guests) . "</li>
+                <li>Price: " . htmlspecialchars($total_amount) . "</li>
             </ul>
             <p><strong>Your OTP Code: " . htmlspecialchars($otp) . "</strong></p>
             <p>Please enter this code within 10 minutes to confirm your reservation.</p>

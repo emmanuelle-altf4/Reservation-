@@ -54,7 +54,7 @@ if (!isset($_SESSION['customer_name'])) {
             <li>Weekly Room Service</li>
         </ul>
     </div>
-    <div class="booking-panel">
+    <!-- <div class="booking-panel">
         <h3>Book Your Stay</h3>
         <form action="process_reservation.php" method="POST">
             <label>Check-in Date:</label>
@@ -68,7 +68,7 @@ if (!isset($_SESSION['customer_name'])) {
 
             <button type="submit" class="loginbtn">Book Now</button>
         </form>
-    </div>
+    </div> -->
 </div>
 </body>
 </html>
