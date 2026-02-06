@@ -1,0 +1,68 @@
+
+CREATE DATABASE resortreservation;
+
+USE resortreservation;
+
+
+CREATE TABLE staff (
+    employee_number INT AUTO_INCREMENT PRIMARY KEY,   
+    employee_name VARCHAR(100) NOT NULL,             
+    password_hash VARCHAR(255) NOT NULL  
+);   
+
+
+ALTER TABLE staff 
+ADD role ENUM('Admin','Employee') DEFAULT 'Employee';
+
+
+CREATE TABLE customerreservation (
+    reservation_id INT AUTO_INCREMENT PRIMARY KEY, 
+    user_id INT NOT NULL,                           
+    customer_name VARCHAR(100) NOT NULL,            
+    checkin_date DATE NOT NULL,                     
+    checkout_date DATE NOT NULL,                    
+    room_type VARCHAR(50) NOT NULL,                 
+    guests INT NOT NULL,                             -
+    status ENUM('Pending','Confirmed','Cancelled') DEFAULT 'Pending',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,  -- when reservation was made
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    
+    CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES user(user_id)
+);
+
+ALTER TABLE customerreservation 
+MODIFY user_id INT NULL;
+
+
+
+CREATE TABLE admin (
+    admin_id INT AUTO_INCREMENT PRIMARY KEY,   -- unique admin ID
+    username VARCHAR(50) NOT NULL UNIQUE,      -- admin login username
+    password VARCHAR(255) NOT NULL,            -- hashed password
+    email VARCHAR(100) NOT NULL UNIQUE,        -- contact email
+    full_name VARCHAR(100) NOT NULL,           -- admin's name
+    role ENUM('SuperAdmin','Manager','Staff') DEFAULT 'Manager',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+INSERT INTO admin (username, password, email, full_name, role)
+VALUES (
+    'faith_admin',
+    '$2y$10$exampleHashedPasswordHere',  -- use PHP password_hash()
+    'faith@example.com',
+    'FAITH',
+    'SuperAdmin'
+);
+
+UPDATE staff SET role='Admin' WHERE employee_number=1;
+
+ALTER TABLE customerreservation 
+ADD otp_code VARCHAR(10),
+ADD otp_expiry DATETIME;
+
+
+adding admin
+
+INSERT INTO staff (employee_name, password_hash, role)
+VALUES ('Akolangtokalma', '', 'Admin');

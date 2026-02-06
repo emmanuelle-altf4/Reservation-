@@ -1,0 +1,11 @@
+{
+    "name": "armmc/users",
+    "autoload": {
+        "psr-4": {
+            "Armmc\\Users\\": "src/"
+        }
+    },
+    "require": {
+        "phpmailer/phpmailer": "7.0.2"
+    }
+}

@@ -1,0 +1,51 @@
+/* Reset some defaults */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  background: #f4f6f9;   /* soft neutral background */
+  color: #333;
+}
+
+/* Navigation bar */
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  background-color: #455792;   /* deep modern blue */
+  display: flex;
+  justify-content: flex-end;   /* align items to right */
+}
+
+ul li {
+  margin: 0;
+}
+
+ul li a {
+  display: block;
+  color: #fff;
+  padding: 14px 20px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.3s;
+}
+
+ul li a:hover,
+ul li a.active {
+  background-color: #2f3e6e;   /* darker hover/active */
+}
+
+/* Image container */
+.image-container {
+  display: flex;
+  flex-direction: column;   /* stack vertically */
+  align-items: flex-end;    /* push to right side */
+  margin: 40px;
+}
+
+.image-container img {
+  width: 400px;             /* scale down for balance */
+  height: auto;
+  margin-bottom: 20px;      /* spacing between images */
+  border-radius: 8px;       /* smooth corners */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* subtle shadow */
+}
