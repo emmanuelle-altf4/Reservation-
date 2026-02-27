@@ -37,12 +37,12 @@
             <li><a href="admin_dashboard.php">Dashboard</a></li>
             <li><a href="adminmanage.php">User Dashboard</a></li>
             <li><a href="manage_staff.php">Staff Dashboard</a></li>
-            <li><a href="logout.php">Logout</a></li>
+            <li><a href="../staff/logout.php">Logout</a></li>
         </ul>
     </div>
 
     <div class="form">
-        <h1>Welcome, <?php echo htmlspecialchars($_SESSION['employee_name']); ?>!</h1>
+        <h1>Welcome, <?php echo htmlspecialchars($_SESSION['employee_name']); ?>This Is Dashboard!</h1>
         <p>Manage staff accounts below:</p>
 
         <table class="reservation-table">

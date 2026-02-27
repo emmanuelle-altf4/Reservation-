@@ -63,7 +63,7 @@ ob_end_flush();
 <body>
 <div class="form">
     <form action="login.php" method="POST">
-        <h1>Login</h1>
+        <h1>Login STAFF</h1>
         <?php if ($error): ?>
             <p style="color:red;"><?php echo $error; ?></p>
         <?php endif; ?>
